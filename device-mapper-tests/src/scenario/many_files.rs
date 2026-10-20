@@ -9,7 +9,7 @@ impl ManyFiles {
         let n = self.n;
         for i in 0..n {
             run_cmd!(touch $root/$i).unwrap();
-            run_cmd!(echo $i > $root/$i).unwrap();
+            std::fs::write(format!("{}/{}", root, i), format!("{}\n", i)).unwrap();
         }
         kernel::drop_caches();
         for i in 0..n {
