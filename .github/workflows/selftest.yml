@@ -8,24 +8,25 @@ on:
 jobs:
   run_tests:
     name: Tests
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
+      - name: Checkout device-mapper-tests
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
       - name: Install dependencies
         uses: awalsh128/cache-apt-pkgs-action@latest
         with:
-          packages: cargo cryptsetup xfs xfsprogs
-          version: 1.0
+          packages: cryptsetup xfs xfsprogs
+          version: "1.0"
 
       - name: Check cryptsetup enabled
         run: cryptsetup benchmark -c aes-xts-plain64 -s 512
 
-      - name: Checkout device-mapper-tests
-        uses: actions/checkout@v4
-        with:
-          repository: akiradeveloper/device-mapper-tests
-          ref: bump
-          path: tests
-
       - name: Test
-        working-directory: tests/device-mapper-tests
-        run: sudo make test
+        working-directory: device-mapper-tests
+        env:
+          CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_RUNNER: sudo
+        run: make test
