@@ -88,12 +88,14 @@ fn dbench() {
     XFS::format(&wb);
     let fs = XFS::new(&wb);
     let pwd = &fs.mount_point;
-    let options = vec!["-t 60 1", "-S -t 60 4", "-s -t 60 4"];
+    let options = vec![
+        vec!["-t", "60", "1"],
+        vec!["-S", "-t", "60", "4"],
+        vec!["-s", "-t", "60", "4"],
+    ];
     for option in options {
         let _pwd = tmp_env::set_current_dir(pwd).unwrap();
-        // We use run_cmd function instead of macro here
-        // https://github.com/rust-shell-script/rust_cmd_lib/issues/17
-        run_cmd(format!("dbench {}", option)).unwrap();
+        run_cmd!(dbench $[option]).unwrap();
     }
 }
 

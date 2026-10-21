@@ -8,6 +8,8 @@
 
 ## Requirements for the framework
 
+Rust 1.88 or later is required.
+
 These modules must be installed in the system to get the framework working.
 
 - xfs, xfsprogs
