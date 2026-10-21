@@ -2,9 +2,9 @@
 
 ## Crates
 
-- device-mapper-tests: The test framework. **Please make sure all tests for the framework completes in success.**
-- writeboost-tests: Tests for [dm-writeboost](https://github.com/akiradeveloper/dm-writeboost). You need to `modprobe dm-writeboost`.
-- wb-command-tests: Tests for `writeboost-cli` from [dm-writeboost-tools](https://github.com/akiradeveloper/dm-writeboost-tools). You need to `modprobe dm-writeboost` and run `cargo install --path writeboost-cli` from the dm-writeboost-tools checkout. Ensure `writeboost-cli` is on `PATH` when running the tests.
+- device-mapper-tests: Tests for the framework itself.
+- writeboost-tests: Tests for [dm-writeboost](https://github.com/akiradeveloper/dm-writeboost). Make sure `dm-writeboost` is installed.
+- wb-command-tests: Tests for `writeboost-cli` from [dm-writeboost-tools](https://github.com/akiradeveloper/dm-writeboost-tools). Make sure `dm-writeboost` and `writeboost-cli` are installed.
 
 ## Requirements for the framework
 
