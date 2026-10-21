@@ -16,6 +16,9 @@ jobs:
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
 
+      - name: Install just
+        uses: extractions/setup-just@v4
+
       - name: Install dependencies
         uses: awalsh128/cache-apt-pkgs-action@latest
         with:
@@ -26,7 +29,4 @@ jobs:
         run: cryptsetup benchmark -c aes-xts-plain64 -s 512
 
       - name: Test
-        working-directory: device-mapper-tests
-        env:
-          CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_RUNNER: sudo
-        run: make test
+        run: just device-mapper-tests
